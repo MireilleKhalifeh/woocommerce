@@ -91,9 +91,9 @@ class WooProduct {
   final List<int> groupedProducts;
   final int menuOrder;
   final List<MetaData> metaData;
+  final Acf acf;
 
-  WooProduct(
-      this.id,
+  WooProduct(this.id,
       this.name,
       this.slug,
       this.permalink,
@@ -149,7 +149,8 @@ class WooProduct {
       this.variations,
       this.groupedProducts,
       this.menuOrder,
-      this.metaData);
+      this.metaData,
+      this.acf);
 
   WooProduct.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -205,9 +206,13 @@ class WooProduct {
         categories = (json['categories'] as List)
             .map((i) => WooProductCategory.fromJson(i))
             .toList(),
-        tags = (json['tags'] as List).map((i) => WooProductItemTag.fromJson(i)).toList(),
+        tags = (json['tags'] as List)
+            .map((i) => WooProductItemTag.fromJson(i))
+            .toList(),
         images =
-            (json['images'] as List).map((i) => WooProductImage.fromJson(i)).toList(),
+        (json['images'] as List)
+            .map((i) => WooProductImage.fromJson(i))
+            .toList(),
         attributes = (json['attributes'] as List)
             .map((i) => WooProductItemAttribute.fromJson(i))
             .toList(),
@@ -217,11 +222,13 @@ class WooProduct {
         variations = json['variations'].cast<int>(),
         groupedProducts = json['grouped_products'].cast<int>(),
         menuOrder = json['menu_order'],
+        acf = json['acf'],
         metaData = (json['meta_data'] as List)
             .map((i) => MetaData.fromJson(i))
             .toList();
 
-  @override toString() => "{id: $id}, {name: $name}, {price: $price}, {status: $status}";
+  @override toString() =>
+      "{id: $id}, {name: $name}, {price: $price}, {status: $status}";
 }
 
 class WooProductItemTag {
@@ -237,6 +244,7 @@ class WooProductItemTag {
         slug = json['slug'];
 
   Map<String, dynamic> toJson() => {'id': id, 'name': name, 'slug': slug};
+
   @override toString() => 'Tag: $name';
 }
 
@@ -295,26 +303,26 @@ class WooProductImage {
 }
 
 /**
-class Category {
-  final int id;
-  final String name;
-  final String slug;
+    class Category {
+    final int id;
+    final String name;
+    final String slug;
 
-  Category(this.id, this.name, this.slug);
+    Category(this.id, this.name, this.slug);
 
-  Category.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        name = json['name'],
-        slug = json['slug'];
+    Category.fromJson(Map<String, dynamic> json)
+    : id = json['id'],
+    name = json['name'],
+    slug = json['slug'];
 
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'slug': slug,
-      };
-  @override toString() => toJson().toString();
-}
-*/
+    Map<String, dynamic> toJson() => {
+    'id': id,
+    'name': name,
+    'slug': slug,
+    };
+    @override toString() => toJson().toString();
+    }
+ */
 
 class WooProductDimension {
   final String length;
@@ -340,7 +348,8 @@ class WooProductItemAttribute {
   final bool variation;
   final List<String> options;
 
-  WooProductItemAttribute(this.id, this.name, this.position, this.visible, this.variation,
+  WooProductItemAttribute(this.id, this.name, this.position, this.visible,
+      this.variation,
       this.options);
 
   WooProductItemAttribute.fromJson(Map<String, dynamic> json)
@@ -351,7 +360,8 @@ class WooProductItemAttribute {
         variation = json['variation'],
         options = json['options'].cast<String>();
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() =>
+      {
         'id': id,
         'name': name,
         'position': position,
@@ -373,9 +383,52 @@ class WooProductDownload {
         name = json['name'],
         file = json['file'];
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() =>
+      {
         'id': id,
         'name': name,
         'file': file,
+      };
+}
+
+class Acf {
+  Acf({
+    this.brandModel,
+    this.brand,
+    this.yearOfManufacture,
+    this.hoursOfUse,
+    this.country,
+    this.city,
+  });
+
+  String brandModel;
+  String brand;
+  String yearOfManufacture;
+  String hoursOfUse;
+  String country;
+  String city;
+
+  factory Acf.fromMap(Map<String, dynamic> json) =>
+      Acf(
+        brandModel: json["Brand_model"] == null ? null : json["Brand_model"],
+        brand: json["Brand"] == null ? null : json["Brand"],
+        yearOfManufacture: json["Year_of_manufacture"] == null
+            ? null
+            : json["Year_of_manufacture"],
+        hoursOfUse: json["Hours_of_use"] == null ? null : json["Hours_of_use"],
+        country: json["country"] == null ? null : json["country"],
+        city: json["city"] == null ? null : json["city"],
+      );
+
+  Map<String, dynamic> toMap() =>
+      {
+        "Brand_model": brandModel == null ? null : brandModel,
+        "Brand": brand == null ? null : brand,
+        "Year_of_manufacture": yearOfManufacture == null
+            ? null
+            : yearOfManufacture,
+        "Hours_of_use": hoursOfUse == null ? null : hoursOfUse,
+        "country": country == null ? null : country,
+        "city": city == null ? null : city,
       };
 }
