@@ -413,6 +413,6 @@ class Acf {
         brand = json['Brand'],
         yearOfManufacture = json['Year_of_manufacture'],
         hoursOfUse = json['Hours_of_use'],
-        country = parse(json['country']),
-        city = parse(json['city']);
+        country = json['country'],
+        city = json['city'];
 }
