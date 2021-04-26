@@ -222,7 +222,7 @@ class WooProduct {
         variations = json['variations'].cast<int>(),
         groupedProducts = json['grouped_products'].cast<int>(),
         menuOrder = json['menu_order'],
-        acf = json['acf'],
+        acf = Acf.fromJson(json['acf']),
         metaData = (json['meta_data'] as List)
             .map((i) => MetaData.fromJson(i))
             .toList();
