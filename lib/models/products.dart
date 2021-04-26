@@ -408,27 +408,11 @@ class Acf {
   String country;
   String city;
 
-  factory Acf.fromMap(Map<String, dynamic> json) =>
-      Acf(
-        brandModel: json["Brand_model"] == null ? null : json["Brand_model"],
-        brand: json["Brand"] == null ? null : json["Brand"],
-        yearOfManufacture: json["Year_of_manufacture"] == null
-            ? null
-            : json["Year_of_manufacture"],
-        hoursOfUse: json["Hours_of_use"] == null ? null : json["Hours_of_use"],
-        country: json["country"] == null ? null : json["country"],
-        city: json["city"] == null ? null : json["city"],
-      );
-
-  Map<String, dynamic> toMap() =>
-      {
-        "Brand_model": brandModel == null ? null : brandModel,
-        "Brand": brand == null ? null : brand,
-        "Year_of_manufacture": yearOfManufacture == null
-            ? null
-            : yearOfManufacture,
-        "Hours_of_use": hoursOfUse == null ? null : hoursOfUse,
-        "country": country == null ? null : country,
-        "city": city == null ? null : city,
-      };
+  Acf.fromJson(Map<String, dynamic> json)
+      : brandModel = json['Brand_model'],
+        brand = json['Brand'],
+        yearOfManufacture = json['Year_of_manufacture'],
+        hoursOfUse = json['Hours_of_use'],
+        country = DateTime.parse(json['country']),
+        city = DateTime.parse(json['city']);
 }
