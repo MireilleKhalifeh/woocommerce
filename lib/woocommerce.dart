@@ -44,6 +44,7 @@ import "dart:core";
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:woocommerce/models/contact_us.dart';
 import 'package:woocommerce/models/customer_download.dart';
 import 'package:woocommerce/models/payment_gateway.dart';
 import 'package:woocommerce/models/shipping_zone_method.dart';
@@ -793,6 +794,22 @@ class WooCommerce{
       services.add(service);
     }
     return services;
+  }
+
+  Future<List<ContactUs>> getContactUsInfo() async {
+    Map<String, dynamic> payload = {};
+    _printToLog("Parameters: " + payload.toString());
+    List<ContactUs> contactUsInfo =[];
+    _setApiResourceUrl(path: '/contact_us',isBase: true);
+    final response = await get(queryUri.toString());
+    _printToLog('response gotten : '+response.toString());
+    _printToLog('this is the queri uri : '+queryUri.toString());
+    for(var s in response){
+      var contactUs = ContactUs.fromJson(s);
+      _printToLog('ContactUs Info gotten here : '+contactUs.title.rendered);
+      contactUsInfo.add(contactUs);
+    }
+    return contactUsInfo;
   }
   /// Returns a  [WooProductReview] object.
   ///
