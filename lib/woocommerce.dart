@@ -783,7 +783,7 @@ class WooCommerce{
     Map<String, dynamic> payload = {};
     _printToLog("Parameters: " + payload.toString());
     List<Service> services =[];
-    _setApiResourceUrl(path: 'services',isBase: true);
+    _setApiResourceUrl(path: '/services',isBase: true);
     final response = await get(queryUri.toString());
     _printToLog('response gotten : '+response.toString());
     _printToLog('this is the queri uri : '+queryUri.toString());

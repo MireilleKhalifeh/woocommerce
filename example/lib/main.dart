@@ -22,11 +22,6 @@ String baseUrl = "";
 String consumerKey = "";
 String consumerSecret = "";
 
-WooCommerce _woocommerce2 = WooCommerce(
-    baseUrl: 'https://ammartrading.com/',
-    consumerKey: "ck_0e87892aa0f3ab6783df5d3f838f22ca112bf454",
-    consumerSecret: "cs_af286997272e69abc0733c31b350fd1de3c7f1f0",
-    apiPath: '/wp-json/wp/v2/');
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
