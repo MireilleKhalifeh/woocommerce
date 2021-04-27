@@ -783,7 +783,7 @@ class WooCommerce{
     Map<String, dynamic> payload = {};
     _printToLog("Parameters: " + payload.toString());
     List<Service> services =[];
-    _setApiResourceUrl(path: 'services');
+    _setApiResourceUrl(path: 'services',isBase: true);
     final response = await get(queryUri.toString());
     _printToLog('response gotten : '+response.toString());
     _printToLog('this is the queri uri : '+queryUri.toString());
@@ -1614,12 +1614,14 @@ class WooCommerce{
     @required String path,
     String host, port, queryParameters,
     bool isShop = false,
+    bool isBase = false,
   }) {
     this.apiPath = DEFAULT_WC_API_PATH;
     if(isShop){
       this.apiPath = URL_STORE_API_PATH;
-    }
-    else{
+    } else if(isBase){
+      this.apiPath = URL_WP_BASE;
+    } else{
       this.apiPath = DEFAULT_WC_API_PATH;
     }
     //List<Map>param = [];

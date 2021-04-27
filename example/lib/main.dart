@@ -39,7 +39,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   List<WooProduct> products = [];
-  List<Service> services = [];
+
   List<WooProduct> featuredProducts = [];
   WooCommerce wooCommerce = WooCommerce(
     baseUrl: baseUrl,
@@ -54,17 +54,11 @@ class _MyHomePageState extends State<MyHomePage> {
     });
     print(products.toString());
   }
-  getServices() async {
-    services = await _woocommerce2.getServices();
-    print(services.toString());
-  }
-
   @override
   void initState() {
     super.initState();
     //You would want to use a feature builder instead.
     getProducts();
-    getServices();
   }
   @override
   Widget build(BuildContext context) {
