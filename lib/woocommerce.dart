@@ -71,6 +71,7 @@ import 'models/tax_rate.dart';
 import 'constants/constants.dart';
 import 'models/jwt_response.dart';
 import 'models/user.dart';
+import 'models/services.dart';
 import 'utilities/local_db.dart';
 
 
@@ -778,6 +779,21 @@ class WooCommerce{
     return productTag;
   }
 
+  Future<List<Service>> getServices() async {
+    Map<String, dynamic> payload = {};
+    _printToLog("Parameters: " + payload.toString());
+    List<Service> services =[];
+    _setApiResourceUrl(path: 'services');
+    final response = await get(queryUri.toString());
+    _printToLog('response gotten : '+response.toString());
+    _printToLog('this is the queri uri : '+queryUri.toString());
+    for(var s in response){
+      var service = Service.fromJson(s);
+      _printToLog('Service gotten here : '+service.title.rendered);
+      services.add(service);
+    }
+    return services;
+  }
   /// Returns a  [WooProductReview] object.
   ///
   /// Related endpoint: https://woocommerce.github.io/woocommerce-rest-api-docs/#product-reviews

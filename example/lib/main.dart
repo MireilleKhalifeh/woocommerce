@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:woocommerce/woocommerce.dart';
 
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -21,7 +22,11 @@ String baseUrl = "";
 String consumerKey = "";
 String consumerSecret = "";
 
-
+WooCommerce _woocommerce2 = WooCommerce(
+    baseUrl: 'https://ammartrading.com/',
+    consumerKey: "ck_0e87892aa0f3ab6783df5d3f838f22ca112bf454",
+    consumerSecret: "cs_af286997272e69abc0733c31b350fd1de3c7f1f0",
+    apiPath: '/wp-json/wp/v2/');
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
@@ -34,6 +39,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   List<WooProduct> products = [];
+  List<Service> services = [];
   List<WooProduct> featuredProducts = [];
   WooCommerce wooCommerce = WooCommerce(
     baseUrl: baseUrl,
@@ -48,13 +54,17 @@ class _MyHomePageState extends State<MyHomePage> {
     });
     print(products.toString());
   }
+  getServices() async {
+    services = await _woocommerce2.getServices();
+    print(services.toString());
+  }
 
   @override
   void initState() {
     super.initState();
     //You would want to use a feature builder instead.
     getProducts();
-
+    getServices();
   }
   @override
   Widget build(BuildContext context) {
