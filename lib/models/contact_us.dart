@@ -82,15 +82,25 @@ class ContactUsAcf {
   String mobile;
   String email;
   String linkedin;
-  String location;
+  String officeLocation;
+  String officeLongitude;
+  String officeLatitude;
+  String stockLocation;
+  String stockLongitude;
+  String stockLatitude;
 
-  ContactUsAcf({this.mobile, this.email, this.linkedin, this.location});
+  ContactUsAcf({this.mobile, this.email, this.linkedin, this.officeLocation});
 
   ContactUsAcf.fromJson(Map<String, dynamic> json) {
     mobile = json['mobile'];
     email = json['email'];
     linkedin = json['linkedin'];
-    location = json['location'];
+    officeLocation = json['location'];
+    officeLongitude = json['longitude-office'];
+    officeLatitude = json['latitude-office'];
+    stockLocation = json['location_stock'];
+    stockLongitude = json['longitude-stock'];
+    stockLatitude = json['latitude-stock'];
   }
 
   Map<String, dynamic> toJson() {
@@ -98,7 +108,12 @@ class ContactUsAcf {
     data['mobile'] = this.mobile;
     data['email'] = this.email;
     data['linkedin'] = this.linkedin;
-    data['location'] = this.location;
+    data['location'] = this.officeLocation;
+    data['longitude-office'] = this.officeLongitude;
+    data['latitude-office'] = this.officeLatitude;
+    data['location_stock'] = this.stockLocation;
+    data['longitude-stock'] = this.stockLongitude;
+    data['latitude-stock'] = this.stockLatitude;
     return data;
   }
 }
