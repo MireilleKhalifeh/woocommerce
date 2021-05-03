@@ -55,6 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
     //You would want to use a feature builder instead.
     getProducts();
   }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;

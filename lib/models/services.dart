@@ -102,6 +102,9 @@ class Acf {
   String serviceEmail1;
   String serviceEmail2;
   String serviceMobile;
+  String storeEmail1;
+  String storeEmail2;
+  String storeMobile;
 
   Acf(
       {this.purchaseEmail1,
@@ -112,7 +115,10 @@ class Acf {
         this.rentalMobile,
         this.serviceEmail1,
         this.serviceEmail2,
-        this.serviceMobile});
+        this.serviceMobile,
+        this.storeEmail1,
+        this.storeEmail2,
+        this.storeMobile});
 
   Acf.fromJson(Map<String, dynamic> json) {
     purchaseEmail1 = json['purchase-email-1'];
@@ -124,6 +130,9 @@ class Acf {
     serviceEmail1 = json['service-email-1'];
     serviceEmail2 = json['service-email-2'];
     serviceMobile = json['service-mobile'];
+    storeEmail1 = json['store-email-1'];
+    storeEmail2 = json['store-email-2'];
+    storeMobile = json['mobile'];
   }
 
   Map<String, dynamic> toJson() {
@@ -137,6 +146,9 @@ class Acf {
     data['service-email-1'] = this.serviceEmail1;
     data['service-email-2'] = this.serviceEmail2;
     data['service-mobile'] = this.serviceMobile;
+    data['store-email-1'] = this.storeEmail1;
+    data['store-email-2'] = this.storeEmail2;
+    data['mobile'] = this.storeMobile;
     return data;
   }
 }

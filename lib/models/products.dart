@@ -51,7 +51,7 @@ class WooProduct {
   final String priceHtml;
   final bool onSale;
   final bool purchasable;
-  final int totalSales;
+  // final int totalSales;
   final bool virtual;
   final bool downloadable;
   final List<WooProductDownload> downloads;
@@ -110,7 +110,7 @@ class WooProduct {
       this.priceHtml,
       this.onSale,
       this.purchasable,
-      this.totalSales,
+      // this.totalSales,
       this.virtual,
       this.downloadable,
       this.downloads,
@@ -170,7 +170,7 @@ class WooProduct {
         priceHtml = json['price_html'],
         onSale = json['on_sale'],
         purchasable = json['purchasable'],
-        totalSales = json['total_sales'],
+        // totalSales = json['total_sales'],
         virtual = json['virtual'],
         downloadable = json['downloadable'],
         downloads = (json['downloads'] as List)

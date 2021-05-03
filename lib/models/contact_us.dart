@@ -83,11 +83,11 @@ class ContactUsAcf {
   String email;
   String linkedin;
   String officeLocation;
-  String officeLongitude;
-  String officeLatitude;
   String stockLocation;
-  String stockLongitude;
-  String stockLatitude;
+  String secondStockLocation;
+  String officeLocationURL;
+  String stockLocationURL;
+  String secondStockLocationURL;
 
   ContactUsAcf({this.mobile, this.email, this.linkedin, this.officeLocation});
 
@@ -96,11 +96,11 @@ class ContactUsAcf {
     email = json['email'];
     linkedin = json['linkedin'];
     officeLocation = json['location'];
-    officeLongitude = json['longitude-office'];
-    officeLatitude = json['latitude-office'];
+    secondStockLocation = json['location_stock_2'];
+    officeLocationURL = json['url_office'];
     stockLocation = json['location_stock'];
-    stockLongitude = json['longitude-stock'];
-    stockLatitude = json['latitude-stock'];
+    stockLocationURL = json['url_stock'];
+    secondStockLocationURL = json['url_stock_2'];
   }
 
   Map<String, dynamic> toJson() {
@@ -109,11 +109,11 @@ class ContactUsAcf {
     data['email'] = this.email;
     data['linkedin'] = this.linkedin;
     data['location'] = this.officeLocation;
-    data['longitude-office'] = this.officeLongitude;
-    data['latitude-office'] = this.officeLatitude;
     data['location_stock'] = this.stockLocation;
-    data['longitude-stock'] = this.stockLongitude;
-    data['latitude-stock'] = this.stockLatitude;
+    data['location_stock_2'] = this.secondStockLocation;
+    data['url_office'] = this.officeLocationURL;
+    data['url_stock'] = this.stockLocationURL;
+    data['url_stock_2'] = this.secondStockLocationURL;
     return data;
   }
 }
