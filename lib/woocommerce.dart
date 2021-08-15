@@ -49,6 +49,7 @@ import 'package:woocommerce/models/contact_us.dart';
 import 'package:woocommerce/models/customer_download.dart';
 import 'package:woocommerce/models/payment_gateway.dart';
 import 'package:woocommerce/models/shipping_zone_method.dart';
+import 'package:woocommerce/models/versions.dart';
 import 'models/cart_item.dart';
 import 'woocommerce_error.dart';
 import 'models/cart.dart';
@@ -826,6 +827,22 @@ class WooCommerce{
       aboutUsInfo.add(aboutUs);
     }
     return aboutUsInfo;
+  }
+  Future<List<Versions>> getVersions() async {
+    Map<String, dynamic> payload = {};
+    _printToLog("Parameters: " + payload.toString());
+    List<Versions> versions =[];
+    _setApiResourceUrl(path: '/updatemobile',isBase: true);
+    final response = await get(queryUri.toString());
+    _printToLog('response gotten : '+response.toString());
+    _printToLog('this is the queri uri : '+queryUri.toString());
+    for(var s in response){
+      var version = Versions.fromJson(s);
+      _printToLog('Version iOS gotten here : '+ version.acf.iOSVersion);
+      _printToLog('Version Android gotten here : '+ version.acf.androidVersion);
+      versions.add(version);
+    }
+    return versions;
   }
   /// Returns a  [WooProductReview] object.
   ///
