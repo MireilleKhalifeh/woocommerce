@@ -839,7 +839,7 @@ class WooCommerce{
     print(response.toString());
     _printToLog('this is the queri uri : '+queryUri.toString());
     for(var s in response){
-      var version = Versions.fromJson(s);
+      var version = Versions.fromMap(s);
       _printToLog('Version iOS gotten here : '+ version.acf.iOSVersion);
       _printToLog('Version Android gotten here : '+ version.acf.androidVersion);
       versions.add(version);
