@@ -834,7 +834,9 @@ class WooCommerce{
     List<Versions> versions =[];
     _setApiResourceUrl(path: '/updatemobile',isBase: true);
     final response = await get(queryUri.toString());
+    print(queryUri.toString());
     _printToLog('response gotten : '+response.toString());
+    print(response.toString());
     _printToLog('this is the queri uri : '+queryUri.toString());
     for(var s in response){
       var version = Versions.fromJson(s);
